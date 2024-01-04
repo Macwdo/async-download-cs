@@ -1,7 +1,6 @@
 ﻿using App;
 
 Console.Clear();
-
 var meanTasks = TimeSpan.Zero;
 var meanAsync = TimeSpan.Zero;
 var pageSize = 40;

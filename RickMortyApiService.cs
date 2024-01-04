@@ -2,6 +2,8 @@ using System.Text.Json;
 
 namespace App;
 
+
+// TODO: Refactor
 public class RickMortyApiService{
 
     private readonly HttpClient _httpClient;

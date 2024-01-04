@@ -1,5 +1,7 @@
 namespace App;
 
+
+// TODO: refactor for small methods
 public static class Run
 {
     public async static Task<TimeSpan> RunAsync(int pages=1)
