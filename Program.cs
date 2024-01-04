@@ -14,7 +14,7 @@ foreach (var i in Enumerable.Range(1, 10))
     meanAsync = meanAsync.Add(asyncTime);
 }
 Console.WriteLine("----------------");
-Console.WriteLine($"Tasks Mean: {meanTasks} | Async Mean: {meanAsync}");
+Console.WriteLine($"Tasks Total Time: {meanTasks} | Async Total Time: {meanAsync}");
 Console.WriteLine("---------------");
 
 // Tasks Total: 00:02:21.9282862 | Async Total: 00:13:59.3457858
