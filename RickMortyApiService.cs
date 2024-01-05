@@ -26,13 +26,13 @@ public class RickMortyApiService{
         return character;
     }
 
-    public async Task DownloadImage(string character, string url)
+    public async Task DownloadImageAsync(string character, string url)
     {
         var imageByte = await _httpClient.GetByteArrayAsync(url);
         await File.WriteAllBytesAsync($"./files/{Guid.NewGuid()}.jpeg", imageByte);
     }
 
-    public async Task DownloadImagesAsync(IEnumerable<Character> characters)
+    public async Task DownloadImagesParallel(IEnumerable<Character> characters)
     {
 
         var taskGetImages = new List<Task<byte[]>>();
@@ -66,18 +66,18 @@ public class RickMortyApiService{
         return characters.SelectMany(s => s);
     }
 
-    public async Task<IEnumerable<Character>> GetCharactersAsyncByTasks(int pages)
+    public async Task<IEnumerable<Character>> GetCharactersAsyncParallel(int pages)
     {
-        return await GetCharactersAsyncByPageUsingTasks(pages);
+        return await GetCharactersAsyncByPageParallel(pages);
     }
 
-    public async Task<IEnumerable<Character>> GetCharactersAsyncByPageUsingTasks(int pages)
+    public async Task<IEnumerable<Character>> GetCharactersAsyncByPageParallel(int pages)
     {
         var tasks = new List<Task<IEnumerable<Character>>>();
         foreach (var i in Enumerable.Range(1, pages))
         {
-            var charactersResponse = GetCharactersAsyncByPage(i);
-            tasks.Add(charactersResponse);
+            var charactersAsyncByPage = GetCharactersAsyncByPage(i);
+            tasks.Add(charactersAsyncByPage);
         }
 
         await Task.WhenAll(tasks);
